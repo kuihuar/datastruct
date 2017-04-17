@@ -260,37 +260,52 @@ function partition(&$arr, $left, $right){
 	$arr[$left]=$temp;
 	return $left;
 }
-$arr=array(9,4,3,2,8,99,95,945,4,7,-1);
+
+//归并排序
+function mergeSort(&$arr, &$tempArr,$left, $right){
+	if($left<$right){
+		$middle=intval(($left+$right)/2);
+//分冶，虽然没太彻底明白
+		mergeSort($arr, $tempArr, $left, $middle);
+		mergeSort($arr, $tempArr, $middle+1, $right);
+		merge($arr, $tempArr, $left, $right, $middle+1);
+	}else{
+		return;
+	}
+}
+function merge(&$arr, &$tempArr, $left, $right, $middle){
+	for($j=$left;$j<=$right;$j++){
+		$tempArr[$j]= $arr[$j];
+		$arr[$j]=0;
+	}
+	$index1=$left;
+	$index2=$middle;
+	$i=$left;
+	while($index1 <$middle && $index2 <=$right){
+		if($tempArr[$index1]<$tempArr[$index2]){
+			$arr[$i++]=$tempArr[$index1++];
+		}else{
+			$arr[$i++]=$tempArr[$index2++];
+		}
+	}
+	//处理剩余记录
+	while ($index1<$middle) {
+		$arr[$i++]= $tempArr[$index1++];
+	}
+	while($index2<=$right){
+		$arr[$i++] = $tempArr[$index2++];
+	}
+}
+$arr=array(9,4,3,2,8,99,95,945,7);
+//$arr=array(2,8,9,10,4,5,6,7);
 printArr($arr);
 echo "\r\n================\r\n";
 $len=count($arr)-1;
-quicksort($arr,0,$len);
+$tempArr=array();
+$m=ceil($len/2)+1;
+mergeSort($arr,$tempArr,0, $len);
 printArr($arr);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		/*'db_host' => '192.168.125.43:3309,192.168.125.43:3309', 
-		'db_name' => 'log_stat', 'db_user' => 'lnxxt', 'db_pass' => 'u0qyrYHZ.0', 
-		'db_type' => 'mysql', 'db_char' => 'utf8', 'db_pefix' => 'ts' */
 
 
 
