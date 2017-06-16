@@ -1,5 +1,4 @@
 <?php
-namespace MM;
 class Autoloader
 {
     private $directory;

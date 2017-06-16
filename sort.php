@@ -265,7 +265,7 @@ function partition(&$arr, $left, $right){
 function mergeSort(&$arr, &$tempArr,$left, $right){
 	if($left<$right){
 		$middle=intval(($left+$right)/2);
-//分冶，虽然没太彻底明白
+		//分冶，虽然没太彻底明白
 		mergeSort($arr, $tempArr, $left, $middle);
 		mergeSort($arr, $tempArr, $middle+1, $right);
 		merge($arr, $tempArr, $left, $right, $middle+1);
