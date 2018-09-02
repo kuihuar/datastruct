@@ -1,4 +1,7 @@
 <?php
+
+
+
 /**
  * 朴素模式
  */
@@ -29,6 +32,10 @@ function findPat($s, $p, $startIndex)
 			return -1;*/ 
 	}
 }
+
+
+echo 'liujianfenshiwangba';
+
 $s="abcdefabcdeff";
 $p="abcdeff";
 findPat($s, $p, 3);
