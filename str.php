@@ -34,7 +34,7 @@ function findPat($s, $p, $startIndex)
 }
 
 
-echo 'liujianfenshiwangba'
+echo 'liujianfenshiwangba';
 
 $s="abcdefabcdeff";
 $p="abcdeff";
