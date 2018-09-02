@@ -10,4 +10,4 @@ Class Test{
 	
 }
 //MMl\Test::test();
-xxx::bar();
+xxx::bar('c');
