@@ -90,3 +90,14 @@ function getNextVal($p){
 }
 //字典树
 
+一次操作，
+array
+    access  O(1)
+    insert O (n)
+    delete o (n)
+Linked  List
+
+head tail next
+access o(n)
+insert O(1)
+delete O(1)
