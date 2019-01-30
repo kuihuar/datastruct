@@ -1,5 +1,7 @@
 import collections
 class Solution(object):
+
+    ##bfs solution
     def levelOrder(self, root):
         if not root: return []
 
@@ -33,3 +35,18 @@ class Solution(object):
         self.result[level].append(node.val)
         self._dfs(node.left, level + 1)
         self._dfs(node.right, level + 1)
+
+
+    def maxDepth(self, root):
+        if not root: return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+    def minDepth(self, root):
+        if not root: return 0
+        if not root.left: return 1 + minDepth(root.right)
+        if not root.right: return 1+ minDepth(root.left)
+
+        leftDepth = minDepth(root.left)
+        rightDepth = minDepth(root.right)
+
+        result = 1 + min(leftDepth, rightDepth)
+        return result
