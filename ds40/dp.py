@@ -50,8 +50,71 @@ class Solution(object):
                                dp[i-1][j] + 1, #delete
                                dp[i][j-1] +1) #replace
         return dp[m][n]
+    def bag(self):
+        v = [1500,3000,2000,2000]
+        w = [1,4,3,1]
+        capaticy = 4 #背包最大容量
+        dp = [[0 for _ in range(capaticy+1)] for _ in range(len(w))]
+        for i in range(len(w)):#选择的商品
+            for j in range(capaticy+1):#容量
+                if j == 0:
+                    dp[i][j] = 0
+                elif j >= w[i]:
+                    print(w[i])
+                    dp[i][j] = max(dp[i-1][j], (v[i] + dp[i-1][j-w[i]]))
+                else:
+                    dp[i][j] = dp[i-1][j]
+        print(dp)
+        print(dp[i][j])
 
+    def bag1(self):
+        v = [1500, 3000, 2000, 2000]
+        w = [1, 4, 3, 1]
+        capaticy = 4  # 背包最大容量
+        dp = [[0 for _ in range(capaticy + 1)] for _ in range(len(w))]
+        for i in range(len(w)):  # 选择的商品
+            for j in range(capaticy + 1):  # 容量
+                if j == 0:
+                    dp[i][j] = 0
+                elif j < w[i]:
+                    print(w[i])
+                    dp[i][j] = dp[i - 1][j]
+                else:
+                    dp[i][j] = max(dp[i - 1][j], (v[i] + dp[i - 1][j - w[i]]))
+        print(dp)
+    def trav(self):
+        #word_a = ["-","f", "o", "s", "h"]
+        #word_b = ["-","f", "i", "s", "h", "e"]
+        word_a = ["-", "b", "l", "u", "e"]
+        word_b = ["-", "c", "l", "u", "e", "s"]
+        maxlen=0
+        dp = [[-1 for _ in range(len(word_a))] for _ in range(len(word_b) )]
+        print(dp)
+        for i in range(len(word_b)):
+            #print(word_b[i])
+            for j in range(len(word_a)):
+                #print(word_a[j])
+                if i == 0 or j == 0:
+                    dp[i][j] = 0
+                else:
+                    if word_b[i] == word_a[j]:
+                        dp[i][j] = dp[i-1][i-1] + 1
+                    else:
+                        dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+        #         else:
+        #             if word_a[i] == word_b[j]:
+        #                 dp[i][j] = dp[i-1][j-1] + 1
+        #             else:
+        #                 dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        for i in range(len(word_b)):
+             for j in range(len(word_a)):
+                 if  dp[i][j] > maxlen:
+                     maxlen = dp[i][j]
+        print(dp)
+        print(maxlen)
 if __name__ == '__main__':
     s = Solution()
-    a = s.minDistance('wordbfiii', 'words')
-    print a
+    #a = s.minDistance('wordbfiii', 'words')
+    #print a
+    s.trav()
