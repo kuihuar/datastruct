@@ -44,4 +44,39 @@
 # c2.start()
 
 
-import numby as n
+from pandas import Series,DataFrame
+#
+# data2 = Series(np.random.randn(10), index=[['a','a','a','b','b','b','c','c','d','d'], [1,2,3,1,2,3,1,2,2,3]])
+#
+# #print(data2['b':'c'])
+#
+# print(data2.unstack().stack())
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+warnings.filterwarnings('ignore')
+
+
+# x = np.arange(1,10)
+# y = pow(2,x)+4
+#
+# fig = plt.figure()
+# plt.scatter(x,y, c='r', marker='x')
+# plt.show()
+# import pandas as pd
+#
+# iris = pd.read_csv("/tmp/a.csv")
+# print(iris.head())
+# # plt.figure(1,dpi=50)
+#
+# data = [1,1,2,2,2,3,3,4,4,5,5,6,6,8]
+# plt.hist(data)
+
+
+# for i in range(1,5):
+#     plt.plot(x,np.sin(x/i))
+# plt.show()
+# plt.plot(x, np.sin(x))
+plt.show()
