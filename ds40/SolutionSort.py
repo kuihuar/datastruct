@@ -67,7 +67,8 @@ class SolutionSort(object):
                     costs[n] = new_cost
                     parents[n] = node
             processed.append(node)
-            node = self.find_lowest_cost_node(costs)#更新之后，再找的node就不是原来的node
+            # 更新之后，再找的node就不是原来的node
+            node = self.find_lowest_cost_node(costs)
 
 graph = {}
 # graph["you"] = ["alice", "bob", "claire"]
@@ -80,37 +81,37 @@ graph = {}
 # graph["jonny"] = []
 
 
-graph["start"] = {}
-graph['start']["a"] = 6
-graph["start"]["b"] = 2
-graph["a"] = {}
-graph["a"]["fin"] = 1
-graph["b"] = {}
-graph["b"]["a"] = 3
-graph["b"]["fin"] = 5
-graph["fin"] = {}
-
-costs = {}
-infinity = float("inf")
-costs["a"] = 6
-costs["b"] = 2
-costs["fin"] = infinity
-
-parents = {}
-parents["a"] = "start"
-parents["b"] = "start"
-parents["fin"] = None
-
-processed = []
+# graph["start"] = {}
+# graph['start']["a"] = 6
+# graph["start"]["b"] = 2
+# graph["a"] = {}
+# graph["a"]["fin"] = 1
+# graph["b"] = {}
+# graph["b"]["a"] = 3
+# graph["b"]["fin"] = 5
+# graph["fin"] = {}
+#
+# costs = {}
+# infinity = float("inf")
+# costs["a"] = 6
+# costs["b"] = 2
+# costs["fin"] = infinity
+#
+# parents = {}
+# parents["a"] = "start"
+# parents["b"] = "start"
+# parents["fin"] = None
+#
+# processed = []
 
 
 
 if __name__ == '__main__':
     s = SolutionSort()
-    #Sprint(s.quickSort([10,5,2,3,9,8,1,7]))
+    print(s.quickSort([10,5,2,3,9,8,1,7]))
     #print([8,5,4,7,1,3,6,2])
     #print(s.mergeSort([8,5,4,7,1,3,6,2]))
     #s.bfsSearch('you')
-    s.dijkstra(costs)
-    print(costs['fin'])
-    print(parents)
+    # s.dijkstra(costs)
+    # print(costs['fin'])
+    # print(parents)
