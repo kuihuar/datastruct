@@ -83,15 +83,126 @@ function domerge(&$arr, $low, $middle, $high){
     echo '  arr= ';printArr($arr);
     var_dump("        {  ".$num."   }>>>>>>>>>>>.\n");
 }
-$arr = [10,2,14,36,7,9,3,1,8,5];
 function mergeSort(&$arr, $low, $high){
     if($low < $high){
         $middle = intdiv(($low+$high),2);
-       // var_dump("===\$middle=$middle");
+        // var_dump("===\$middle=$middle");
         mergeSort($arr, $low, $middle);
         mergeSort($arr, $middle+1, $high);
         domerge($arr, $low, $middle, $high);
     }
 }
-mergeSort($arr,0,count($arr)-1);
+//mergeSort($arr,0,count($arr)-1);
+
+$arr = [6,10,2,12,11,7,4,9,3,1,8,5];
+function quickSort(&$arr, $low, $high){
+    if($low < $high){
+        $position = partition($arr, $low, $high);
+        var_dump("\$low = $low and \$high = $high ||| and \$position = $position");
+        quickSort($arr, $low, $position-1);
+        quickSort($arr, $position+1, $high);
+    }
+}
+function partition(&$arr, $low, $high){
+    static $num=0;
+    $temp = $arr[$low];
+    var_dump("swap>>>>>>>>>>{ \$num=(".$num++.") }\$temp = $arr[$low]");
+    while($low < $high){
+        while($low < $high && $arr[$high] > $temp)
+            $high--;
+        $arr[$low] = $arr[$high];
+        var_dump("{ (\$high--) \$num=(".$num++.") }\$arr[$low] = \$arr[$high]");
+        while ($low < $high && $arr[$low] < $temp)
+            $low++;
+        $arr[$high] = $arr[$low];
+        var_dump("{ (\$low++)\$num=(".$num++.") } \$arr[$high] = \$arr[$low]");
+    }
+    $arr[$low] = $temp;
+    var_dump("swap>>>>>>>>>>{ \$num=(".$num++.") }\$arr[$low] = $temp");
+    return $low;
+}
+function partition1(&$arr, $low, $high){
+    $position=$high;
+    $firsthigh=$low;
+    for($i=$low;$i<$high;$i++){
+        if($arr[$i] < $arr[$position]){
+            swap($arr, $i, $position);
+        }
+    }
+    swap($arr, $position, $firsthigh);
+    var_dump("\$firsthigh = $firsthigh");
+    printArr($arr);
+    return $firsthigh;
+}
+function swap(&$arr, $i, $j){
+    var_dump("swap>>>>>>>>>   \$i==$i and \$arr[$i]=$arr[$i]  and \$j==$j  and \$arr[$j]=$arr[$j]");
+    $temp = $arr[$i];
+    $arr[$i] = $arr[$j];
+    $arr[$j] = $temp;
+}
+//quickSort($arr,0, count($arr)-1);
+function shellSort(&$arr){
+    $n =$delta= count($arr);
+    do{
+        $delta = ceil($delta/2);
+        for($i=$delta;$i<$n;$i++){
+            for($j=$i;$j>=$delta;$j-=$delta){
+                if($arr[$j] < $arr[$j-$delta]){
+                    //swap($arr,$j, $j-$delta);
+                    $temp = $arr[$j];
+                    $arr[$j] = $arr[$j-$delta];
+                    $arr[$j-$delta] = $temp;
+                }
+            }
+        }
+    }while($delta>1);
+}
+
+function shell_short(&$arr){
+    $len = count($arr);
+    /*for($gap = intdiv($len,2); $gap > 0; $gap=intdiv($gap, 2)){
+        var_dump($gap);
+        for($i = $gap; $i < $len; $i++){
+            for($j=$i-$gap; $j >=0; $j-=$gap){
+                $t=$j+$gap;
+                var_dump("\$j=$j and [\$j+\$gap][$j+$gap][$t] and \$gap=$gap");
+                if ($arr[$j] > $arr[$j + $gap]) {
+                    $temp = $arr[$j];
+                    $arr[$j] = $arr[$j + $gap];
+                    $arr[$j + $gap] = $temp;
+                }
+            }
+        }
+    }*/
+    for($gap=intdiv($len,2); $gap > 0; $gap = intdiv($gap, 2)){
+        for($i=$gap;$i < $len; $i++){
+            for($j=$i-$gap; $j>=0 && $arr[$j] > $arr[$j+$gap]; $j-=$gap){
+                $temp = $arr[$j];
+                $arr[$j] = $arr[$j+$gap];
+                $arr[$j+$gap] = $temp;
+            }
+        }
+    }
+}
+
+function shell_short1(&$arr){
+    $n = count($arr);
+    for($gap=floor($n/2);$gap>0;$gap=floor($gap/=2)){
+        var_dump("+++++++++++++++++++++++   \$gap=$gap   +++++++++++++++++++");
+        for($i=$gap;$i<$n;$i++){
+            var_dump("---------   \$i=$i   ----------");
+            for($j=$i-$gap;$j>=0 && $arr[$j+$gap]<$arr[$j];$j-=$gap){
+                var_dump("\$arr[$j+$gap]< \$arr[$j] and \$j=$j and  \$i=$i");
+                //if($arr[$j+$gap]<$arr[$j]){// 这里再比较就是多余的了
+                    $temp=$arr[$j];
+                    $arr[$j]=$arr[$j+$gap];
+                    $arr[$j+$gap]=$temp;
+                //}
+            }
+        }
+    }
+}
+
+$arr= [8,76, 81, 60, 22, 98, 33, 12, 79,7];
+shell_short1($arr);
 printArr($arr);
