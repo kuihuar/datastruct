@@ -1,2 +1,5 @@
 .idea/
 venv/
+datastruct.xcodeproj/*
+datastruct/datastruct.xcodeproj/project.xcworkspace/xcuserdata/
+Untitled.xcworkspace/
