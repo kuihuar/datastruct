@@ -1,2 +1,4 @@
 this is test
+defg
 abcd
+my new line
